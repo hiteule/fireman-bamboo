@@ -13,6 +13,8 @@ static int configHandler(void* user, const char* section, const char* name, cons
         pconfig->debug = atoi(value);
     } else if (MATCH("config", "gpio_warning_light")) {
         pconfig->gpioWarningLight = atoi(value);
+    } else if (MATCH("config", "gpio_buzzer")) {
+        pconfig->gpioBuzzer = atoi(value);
     } else if (MATCH("config", "credential")) {
         pconfig->credential = strdup(value);
     } else if (MATCH("config", "test_url")) {
@@ -39,6 +41,11 @@ int getConfigDebug()
 int getConfigGpioWarningLight()
 {
     return config.gpioWarningLight;
+}
+
+int getConfigGpioBuzzer()
+{
+    return config.gpioBuzzer;
 }
 
 const char* getConfigCredential()

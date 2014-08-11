@@ -30,27 +30,88 @@ void setupGpio()
     gpio = (volatile unsigned *)gpio_map;
 
     gpioWarningLight = getConfigGpioWarningLight();
+    gpioBuzzer       = getConfigGpioBuzzer();
 
-    INP_GPIO(gpioWarningLight);
     OUT_GPIO(gpioWarningLight);
+    OUT_GPIO(gpioBuzzer);
 }
 
 int getWarningLightState()
 {
-    return ((GPIO_LEV & (1 << gpioWarningLight)) == 0);
+    return ((GPIO_LEV & (1 << gpioWarningLight)) != 0);
 }
 
 void setWarningLightState(int state)
 {
     if (state == 1) {
         if (getConfigDebug() == 1) {
-            printf("Set warning light output = 0 (warning light on)\n");
-        }
-        GPIO_CLR = 1<<gpioWarningLight;
-    } else {
-        if (getConfigDebug() == 1) {
-            printf("Set warning light output = 1 (warning light off)\n");
+            printf("Set warning light output = 1 (warning light on)\n");
         }
         GPIO_SET = 1<<gpioWarningLight;
+    } else {
+        if (getConfigDebug() == 1) {
+            printf("Set warning light output = 0 (warning light off)\n");
+        }
+        GPIO_CLR = 1<<gpioWarningLight;
     }
+}
+
+void buzz(int duration)
+{
+    int delay = 200;
+    int cycles = (delay * duration);
+
+    int i;
+    for (i=0; i<cycles; i++) {
+        GPIO_SET = 1<<gpioBuzzer;
+        usleep(delay);
+        GPIO_CLR = 1<<gpioBuzzer;
+        usleep(delay);
+    }
+}
+
+void morse()
+{
+    buzz(1); // .
+    usleep(150000);
+    buzz(1); // .
+    usleep(150000);
+    buzz(1); // .
+    usleep(150000);
+    buzz(2); // -
+    usleep(150000);
+    buzz(2); // -
+    usleep(150000);
+    buzz(2); // -
+    usleep(150000);
+    buzz(1); // .
+    usleep(150000);
+    buzz(1); // .
+    usleep(150000);
+    buzz(1); // .
+}
+
+void victory()
+{
+    buzz(1);
+    usleep(250000);
+    buzz(1);
+    usleep(250000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
+    usleep(250000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
+    usleep(250000);
+    buzz(1);
+    usleep(150000);
+    buzz(1);
 }

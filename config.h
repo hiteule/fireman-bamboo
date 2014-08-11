@@ -5,6 +5,7 @@ typedef struct
 {
     int debug;
     int gpioWarningLight;
+    int gpioBuzzer;
     const char* credential;
     const char* testUrl;
 } configuration;
@@ -18,6 +19,8 @@ void setupConfig(char* configFilePath);
 int getConfigDebug();
 
 int getConfigGpioWarningLight();
+
+int getConfigGpioBuzzer();
 
 const char* getConfigCredential();
 

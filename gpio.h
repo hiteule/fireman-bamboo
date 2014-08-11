@@ -13,6 +13,7 @@
 #define GPIO_LEV *(gpio+13)
 
 int gpioWarningLight;
+int gpioBuzzer;
 int gpio_mem_fd;
 void *gpio_map;
 volatile unsigned *gpio;
@@ -22,5 +23,11 @@ void setupGpio();
 int getWarningLightState();
 
 void setWarningLightState(int state);
+
+void buzz(int duration);
+
+void morse();
+
+void victory();
 
 #endif

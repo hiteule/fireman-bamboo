@@ -24,6 +24,11 @@ int main(int argc, char *argv[], char **envp)
 
         if (!warningLightState) {
             setWarningLightState(1);
+            int i;
+            for (i = 0; i<3; i++) {
+                morse();
+                sleep(1);
+            }
         }
     } else {
         if (getConfigDebug() == 1) {
@@ -32,6 +37,7 @@ int main(int argc, char *argv[], char **envp)
 
         if (warningLightState) {
             setWarningLightState(0);
+            victory();
         }
     }
 
