@@ -25,7 +25,7 @@ int main(int argc, char *argv[], char **envp)
         if (!warningLightState) {
             setWarningLightState(1);
             int i;
-            for (i = 0; i<3; i++) {
+            for (i = 0; i<2; i++) {
                 morse();
                 sleep(1);
             }
