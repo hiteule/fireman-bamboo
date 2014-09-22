@@ -1,6 +1,9 @@
 #ifndef H_TEST
 #define H_TEST
 
+#include <expat.h>
+#include <curl/curl.h>
+
 CURL *curl_handle;
 CURLcode res;
 XML_Parser parser;

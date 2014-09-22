@@ -1,5 +1,3 @@
-#include <expat.h>
-#include <curl/curl.h>
 #include <string.h>
 #include "test.h"
 
