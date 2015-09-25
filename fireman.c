@@ -42,14 +42,14 @@ int main(int argc, char *argv[], char **envp)
         }
 
         if (warningLightState) {
+            setWarningLightState(0);
+            victory();
+
             char *bashSuccessFilePath = getConfigBashSuccess();
 
             if (0 != strcmp(bashSuccessFilePath, "false")) {
                 runBashScript(bashSuccessFilePath);
             }
-
-            setWarningLightState(0);
-            victory();
         }
     }
 
