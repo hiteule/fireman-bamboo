@@ -19,6 +19,10 @@ static int configHandler(void* user, const char* section, const char* name, cons
         pconfig->credential = strdup(value);
     } else if (MATCH("config", "test_url")) {
         pconfig->testUrl = strdup(value);
+    } else if (MATCH("config", "bash_success")) {
+        pconfig->bashSuccess = strdup(value);
+    } else if (MATCH("config", "bash_fail")) {
+        pconfig->bashFail = strdup(value);
     } else {
         return 0;
     }
@@ -56,4 +60,14 @@ const char* getConfigCredential()
 const char* getConfigTestUrl()
 {
     return config.testUrl;
+}
+
+const char* getConfigBashSuccess()
+{
+    return config.bashSuccess;
+}
+
+const char* getConfigBashFail()
+{
+    return config.bashFail;
 }

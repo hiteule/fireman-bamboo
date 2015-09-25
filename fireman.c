@@ -23,6 +23,12 @@ int main(int argc, char *argv[], char **envp)
         }
 
         if (!warningLightState) {
+            char *bashFailFilePath = getConfigBashFail();
+
+            if (0 != strcmp(bashFailFilePath, "false")) {
+                runBashScript(bashFailFilePath);
+            }
+
             setWarningLightState(1);
             int i;
             for (i = 0; i<2; i++) {
@@ -36,6 +42,12 @@ int main(int argc, char *argv[], char **envp)
         }
 
         if (warningLightState) {
+            char *bashSuccessFilePath = getConfigBashSuccess();
+
+            if (0 != strcmp(bashSuccessFilePath, "false")) {
+                runBashScript(bashSuccessFilePath);
+            }
+
             setWarningLightState(0);
             victory();
         }

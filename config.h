@@ -8,6 +8,8 @@ typedef struct
     int gpioBuzzer;
     const char* credential;
     const char* testUrl;
+    const char* bashSuccess;
+    const char* bashFail;
 } configuration;
 
 configuration config;
@@ -26,5 +28,8 @@ const char* getConfigCredential();
 
 const char* getConfigTestUrl();
 
+const char* getConfigBashSucess();
+
+const char* getConfigBashFail();
 
 #endif
